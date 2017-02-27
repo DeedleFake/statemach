@@ -12,10 +12,10 @@ type StateMachine struct {
 	rbuf []rune
 	err  error
 
-	mach Structure
+	mach Config
 }
 
-func New(r io.Reader, mach Structure) *StateMachine {
+func New(r io.Reader, mach Config) *StateMachine {
 	return &StateMachine{
 		r:    bufio.NewReader(r),
 		mach: mach,
@@ -78,7 +78,7 @@ func (sm *StateMachine) Err() error {
 	return sm.err
 }
 
-type Structure struct {
+type Config struct {
 	Initial StateFunc
 	EOF     interface{}
 }
